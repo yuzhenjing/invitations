@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.love.mapper.MarriageInfoMapper">
+
+    <sql id="Base_Column_List">
+    user_id, app_id, app_name, husband, husband_tel,wife, wife_tel,
+    DATE_FORMAT(wedding_day,'%Y年 %m月 %d日')  wedding_day,
+    DATE_FORMAT(lunar_calendar,'%Y年 %m月 %d日') lunar_calendar,
+    address, hotel, lat, lng, share, cover, thumb, code,music_url
+  </sql>
+
+    <select id="queryMarriageInfo" resultType="com.love.model.pojo.MarriageInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_marriage_info
+        where app_id = #{appid}
+    </select>
+
+</mapper>

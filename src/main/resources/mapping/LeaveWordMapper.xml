@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.mapper.LeaveWordMapper">
+
+    <insert id="sendMessage">
+        INSERT INTO `invitations`.`wx_leave_word`(`app_id`, `nick_name`, `avatar_url`, `message`, `create_time`)
+         VALUES (#{appId},#{nickName},#{avatarUrl}, #{message}, NOW());
+    </insert>
+
+    <select id="queryLeaveWordsByAppId" resultType="com.love.model.dao.LeaveWordDAO">
+          select nick_name,message,avatar_url,
+              DATE_FORMAT(create_time,'%Y年 %m月 %d日 %h:%m:%s') create_time
+          from wx_leave_word where app_id=#{appId} order by create_time desc
+  </select>
+</mapper>
