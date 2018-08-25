@@ -7,14 +7,10 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"client": "./client",
-	"svr": "./server",
-	"miniprogramRoot": "./client",
-	"qcloudRoot": "./server",
 	"compileType": "miniprogram",
 	"libVersion": "1.6.4",
 	"appid": "wx1c9835e404cc3d69",
-	"projectname": "mylove",
+	"projectname": "love-08",
 	"condition": {
 		"search": {
 			"current": -1,

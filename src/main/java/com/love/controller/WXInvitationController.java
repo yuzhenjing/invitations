@@ -28,6 +28,7 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
+@RequestMapping("/wx")
 public class WXInvitationController {
 
     @Resource
@@ -50,49 +51,59 @@ public class WXInvitationController {
 
     @RequestMapping("/slideImage")
     public Map<String, Object> slideImage(String appid) {
+        final MarriageInfo marriageInfo = marriageInfoService.queryMarriageInfo(appid);
         final List<SlideImage> slideImages = slideService.querySlideImages(appid);
         Map<String, Object> resMap = new HashMap<>();
         resMap.put("slideList", slideImages);
+        resMap.put("mainInfo",marriageInfo);
         return resMap;
     }
 
     @RequestMapping("/queryFriendWish")
     public Map<String, Object> queryFriendWish(@RequestBody QueryFriendWish queryFriendWish) {
+        final MarriageInfo marriageInfo = marriageInfoService.queryMarriageInfo(queryFriendWish.getAppId());
         PageInfo<QueryWishDAO> friendWishList = friendWishService.queryFriendWish(queryFriendWish);
         Map<String, Object> resMap = new HashMap<>();
         resMap.put("friendWishList", friendWishList.getList());
         resMap.put("wishCount", friendWishList.getTotal());
+        resMap.put("mainInfo",marriageInfo);
         return resMap;
     }
 
     @RequestMapping("/sendBlessing")
     public Map<String, Object> sendBlessing(@RequestBody FriendWishFrom friendWish) {
         PageInfo<QueryWishDAO> friendWishList = friendWishService.sendBlessing(friendWish);
+        final MarriageInfo marriageInfo = marriageInfoService.queryMarriageInfo(friendWish.getAppId());
         Map<String, Object> resMap = new HashMap<>();
         resMap.put("friendWishList", friendWishList.getList());
         resMap.put("wishCount", friendWishList.getTotal());
         resMap.put("success", true);
-        resMap.put("msg", "祝福已传达！");
+        resMap.put("mainInfo",marriageInfo);
+        resMap.put("msg", "新人收到您的祝福啦！");
         return resMap;
     }
 
     @RequestMapping("/queryLeaveWord")
     public Map<String, Object> queryLeaveWord(@RequestBody QueryLeaveWord queryLeaveWord) {
         PageInfo<LeaveWordDAO> leaveWords = leaveWordService.queryLeaveWord(queryLeaveWord);
+        final MarriageInfo marriageInfo = marriageInfoService.queryMarriageInfo(queryLeaveWord.getAppId());
         Map<String, Object> resMap = new HashMap<>();
         resMap.put("leaveWords", leaveWords.getList());
         resMap.put("msgCount", leaveWords.getTotal());
+        resMap.put("mainInfo",marriageInfo);
         return resMap;
     }
 
     @RequestMapping("/sendMessage")
     public Map<String, Object> sendMessage(@RequestBody LeaveWordForm leaveWordForm) {
         PageInfo<LeaveWordDAO> leaveWords = leaveWordService.sendMessage(leaveWordForm);
+        final MarriageInfo marriageInfo = marriageInfoService.queryMarriageInfo(leaveWordForm.getAppId());
         Map<String, Object> resMap = new HashMap<>();
         resMap.put("leaveWords", leaveWords.getList());
         resMap.put("msgCount", leaveWords.getTotal());
         resMap.put("success", true);
         resMap.put("msg", "留言发送成功！");
+        resMap.put("mainInfo",marriageInfo);
         return resMap;
     }
 }

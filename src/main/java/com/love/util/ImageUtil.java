@@ -11,10 +11,16 @@ public class ImageUtil {
 
 
     public static void main(String[] args) throws IOException {
-        Thumbnails.of("f:/L3.jpg")
-                .scale(0.5f)
-                .outputQuality(0.5f)
-                .toFile("d:/L3.jpg");
+
+        for (int i = 2; i <10 ; i++) {
+            String path = "c:/image/L"+i+".jpg";
+            Thumbnails.of(path)
+                    .scale(0.35f)
+                    .outputQuality(0.35f)
+                    .toFile(path);
+        }
+
+
     }
 
 

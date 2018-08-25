@@ -12,7 +12,7 @@
 
     <select id="queryFriendWish" resultType="com.love.model.dao.QueryWishDAO">
           select avatar_url, nick_name, DATE_FORMAT(wish_time,'%Y年 %m月 %d日') as wish_time
-           from  wx_friend_wish where app_id=#{appid} order by wish_time desc
+           from  wx_friend_wish where app_id=#{appid} order by wish_id desc
   </select>
     <select id="queryFriendWishByNickName" resultType="com.love.model.dao.QueryWishDAO">
             select avatar_url, nick_name, DATE_FORMAT(wish_time,'%Y年 %m月 %d日') as wish_time
