@@ -12,6 +12,7 @@ Page({
     title:'',
     subtitle:'',
     userInfo: {},
+    mainInfo: {},
     zanLog:[],
     page: 0,
     hasMoreData: true,
@@ -85,7 +86,7 @@ Page({
     var that = this;
     //console.log(that.data);
     return {
-      title: app.globalData.share,
+      title: that.data.mainInfo.share,
       imageUrl: that.data.mainInfo.thumb,
       path: 'pages/index/index',
       success: function(res) {

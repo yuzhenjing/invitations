@@ -7,6 +7,7 @@ var appid = app.globalData.appid;
 Page({
   data: {
     userInfo: {}, 
+    mainInfo:{}
   },  
   onLoad: function () {
     var that = this
@@ -22,7 +23,8 @@ Page({
       success: function(res) {
       
         that.setData({      
-          slideList: res.data.slideList
+          slideList: res.data.slideList,
+          mainInfo: res.data.mainInfo
         });
       }
     })

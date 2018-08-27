@@ -1,7 +1,7 @@
 // app.js
 App({
     onLaunch: function () {
-        //var that = this;
+        var that = this;
         if (this.globalData.userInfo) {
             typeof cb == "function" && cb(this.globalData.userInfo)
         } else {
