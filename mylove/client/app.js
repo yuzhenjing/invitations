@@ -1,23 +1,22 @@
 // app.js
 App({
     onLaunch: function () {
-        var that = this;
-        if (this.globalData.userInfo) {
-            typeof cb == "function" && cb(this.globalData.userInfo)
-        } else {
-            // 调用登录接口
-            wx.login({
-                success: function () {
-                    wx.getUserInfo({
-                        success: function (res) {
-                            that.globalData.userInfo = res.userInfo;
-                            typeof cb == "function" && cb(that.globalData.userInfo)
-                        }
-                    })
+        wx.login({
+          success: function (res) {
+            if (res.code) {
+              //发起网络请求
+              wx.request({
+                url: 'http://localhost:9000/wx/login',
+                data: {
+                  code: res.code
                 }
-            });
-        }
-
+              })
+            } else {
+              console.log('登录失败！' + res.errMsg)
+            }
+          }
+        });
+    
     },
     onHide: function () {
         wx.pauseBackgroundAudio();
@@ -28,7 +27,7 @@ App({
     globalData: {
         userInfo: null,
         appid: 'wx1c9835e404cc3d69',
-      // server: 'http://192.168.56.1:9000/wx',
+      // server: 'http://localhost:9000/wx',
         server: 'https://love.5918j.com/wx/',
         music_url: ''
     }

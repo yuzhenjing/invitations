@@ -40,18 +40,22 @@ Page({
     this.setData({
       animationData: animation.export(),
     })
-
-
     var that = this
-
-    wx.getUserInfo({
-        success: function (res) {
-            that.setData({
+    // 查看是否授权
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              that.setData({
                 userInfo: res.userInfo
-            })
+              })
+            }
+          })
         }
+      }
     })
-
     wx.request({
       url: server+'/index',
       method: 'GET',
@@ -60,8 +64,6 @@ Page({
         'Accept': 'application/json'
       },
       success: function (res) {
-        //console.log(res.data)
-
         wx.playBackgroundAudio({
           dataUrl: res.data.mainInfo.musicUrl,
           title: '',

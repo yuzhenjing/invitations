@@ -39,12 +39,19 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-
-    wx.getUserInfo({
+    // 查看是否授权
+    wx.getSetting({
       success: function (res) {
-        that.setData({
-          userInfo: res.userInfo
-        })
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              that.setData({
+                userInfo: res.userInfo
+              })
+            }
+          })
+        }
       }
     })
 

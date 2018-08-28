@@ -39,3 +39,9 @@ logging:
   level:
     com.love.mapper: debug
 
+
+wexin:
+  url: https://api.weixin.qq.com/sns/jscode2session
+  appid :  wx1c9835e404cc3d69
+  secret : 1a0d1181ff2295a1363fe0260ce4b789
+
