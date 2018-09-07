@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.love.mapper.WxUserMapper">
+
+    <select id="queryWxUserByOpenId" resultType="com.love.model.WxUser">
+    select 
+    wx_user_id, open_id, nick_name, add_time, session_key
+    from wx_user
+    where open_id = #{openId}
+  </select>
+    <insert id="insert" parameterType="com.love.model.WxUser">
+    insert into wx_user (wx_user_id, open_id, nick_name, 
+      add_time, session_key)
+    values (#{wxUserId,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{sessionKey,jdbcType=VARCHAR})
+  </insert>
+</mapper>

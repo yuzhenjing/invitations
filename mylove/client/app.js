@@ -27,8 +27,8 @@ App({
     globalData: {
         userInfo: null,
         appid: 'wx1c9835e404cc3d69',
-      // server: 'http://localhost:9000/wx',
-        server: 'https://love.5918j.com/wx/',
+      server: 'http://localhost:9000/wx',
+        // server: 'https://love.5918j.com/wx/',
         music_url: ''
     }
 });

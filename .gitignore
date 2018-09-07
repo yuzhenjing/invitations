@@ -24,3 +24,4 @@
 /nbdist/
 /.nb-gradle/
 /**/**/resources/application.yml
+/xr-product/
